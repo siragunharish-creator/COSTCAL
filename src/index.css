@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:#F5F7FA; --card:#FFFFFF; --ink:#0F1B2D; --muted:#5B6778; --line:#E2E7EE;
+  --navy:#0E1B2E; --blue:#1F5FBF; --blue-soft:#E7EFFB; --orange:#E8741A; --orange-soft:#FDEEDD;
+  --green:#14804A; --green-soft:#DDF3E8; --red:#C23B2E; --red-soft:#FBE4E1;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0B121C; --card:#131D2B; --ink:#E8EDF4; --muted:#93A0B3; --line:#243146;
+    --navy:#070D16; --blue:#5B9BEB; --blue-soft:#172A44; --orange:#F2913F; --orange-soft:#3A2713;
+    --green:#3CC283; --green-soft:#12301F; --red:#F0786B; --red-soft:#3A1A17;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0B121C; --card:#131D2B; --ink:#E8EDF4; --muted:#93A0B3; --line:#243146;
+  --navy:#070D16; --blue:#5B9BEB; --blue-soft:#172A44; --orange:#F2913F; --orange-soft:#3A2713;
+  --green:#3CC283; --green-soft:#12301F; --red:#F0786B; --red-soft:#3A1A17;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+#root { min-height: 100%; }
+*:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.num { font-variant-numeric: tabular-nums; }
+.page-enter { animation: pageIn .22s ease-out; }
+@keyframes pageIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sheetIn { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .page-enter, [class*="animate-"] { animation: none !important; } }
+.recharts-text { font-size: 12px; }
+.recharts-sector, .recharts-bar-rectangle path { cursor: pointer; }
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+  :root { --card:#fff; --ink:#000; --muted:#444; --line:#bbb; }
+  .print-area { padding: 0 !important; }
+}
